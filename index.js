@@ -1,69 +1,63 @@
-//1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+//1
 let userName;
 
 do {
     userName = prompt("What's your name?");
-} while (userName === null || userName === "");
+} while (!userName);
 
 alert(`Hello, ${userName}! How are you?!`);
+//2
+let firstNumber = prompt("Введіть перше число");
 
-//2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+while (isNaN(firstNumber) || firstNumber.trim() === "") {
+    firstNumber = prompt(
+        "Будь ласка, введіть коректне перше число (тільки цифри)"
+    );
+}
 
-let validInput = false;
-let number1, number2, operation, result;
+let secondNumber = prompt("Введіть друге число");
 
-while (!validInput) {
-    number1 = parseFloat(prompt("Введіть перше число:"));
-    number2 = parseFloat(prompt("Введіть друге число:"));
+while (isNaN(secondNumber) || secondNumber.trim() === "") {
+    secondNumber = prompt(
+        "Будь ласка, введіть коректне друге число (тільки цифри)"
+    );
+}
 
-    if (!isNaN(number1) && !isNaN(number2)) {
-        validInput = true;
-    } else {
-        alert("Будь ласка, введіть числа.");
+const parsedFirstNumber = parseFloat(firstNumber);
+const parsedSecondNumber = parseFloat(secondNumber);
+
+const operation = prompt("Введіть символ операції (+, -, *, /)");
+
+let result;
+
+if (
+    (operation === "/" && parsedSecondNumber === 0) ||
+    isNaN(parsedFirstNumber) ||
+    isNaN(parsedSecondNumber)
+) {
+    result = "Невірні дані або ділення на нуль";
+} else {
+    switch (operation) {
+        case "+":
+            result = parsedFirstNumber + parsedSecondNumber;
+            break;
+        case "-":
+            result = parsedFirstNumber - parsedSecondNumber;
+            break;
+        case "*":
+            result = parsedFirstNumber * parsedSecondNumber;
+            break;
+        case "/":
+            result = parsedFirstNumber / parsedSecondNumber;
+            break;
+        default:
+            result = "Невірна операція";
+            break;
     }
 }
-
-validInput = false;
-
-while (!validInput) {
-    operation = prompt("Оберіть операцію: +, -, * або /");
-
-    if (
-        operation === "+" ||
-        operation === "-" ||
-        operation === "*" ||
-        operation === "/"
-    ) {
-        validInput = true;
-    } else {
-        alert("Будь ласка, виберіть коректну операцію.");
-    }
-}
-
-switch (operation) {
-    case "+":
-        result = number1 + number2;
-        break;
-    case "-":
-        result = number1 - number2;
-        break;
-    case "*":
-        result = number1 * number2;
-        break;
-    case "/":
-        if (number2 !== 0) {
-            result = number1 / number2;
-        } else {
-            alert("Ділення на нуль!");
-        }
-        break;
-}
-
 alert(`Результат: ${result}`);
 
-// 3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+//3
 let value1 = prompt("Введіть перше значення:");
 let value2 = prompt("Введіть друге значення:");
 
@@ -73,26 +67,20 @@ if (value1 === value2) {
     alert(false);
 }
 
-// 4!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 let inputNumber;
 
-do {
-    inputNumber = prompt("Введіть п'ятизначне число:");
-} while (
-    inputNumber === null ||
-    inputNumber.length !== 5 ||
-    isNaN(inputNumber)
-);
+//4
+const input = prompt("enter num").replace(/-/g, "");
 
-let number = parseInt(inputNumber); // Перетворюємо рядок на ціле число
+if ((input < 0 && input.length === 6) || (input > 0 && input.length === 5)) {
+    const num = +input;
+    const fifthDigit = Math.floor(num / 10000); // Витягуємо першу цифру
+    const fourthDigit = Math.floor((num % 10000) / 1000); // Витягуємо другу цифру
+    const thirdDigit = Math.floor((num % 1000) / 100); // Витягуємо третю цифру
+    const secondDigit = Math.floor((num % 100) / 10); // Витягуємо четверту цифру
+    const firstDigit = Math.floor(num % 10); // Витягуємо п'яту цифру
 
-let fifthDigit = Math.floor(number / 10000); // Витягуємо першу цифру
-let fourthDigit = Math.floor((number % 10000) / 1000); // Витягуємо другу цифру
-let thirdDigit = Math.floor((number % 1000) / 100); // Витягуємо третю цифру
-let secondDigit = Math.floor((number % 100) / 10); // Витягуємо четверту цифру
-let firstDigit = Math.floor(number % 10); // Витягуємо п'яту цифру
+    const result2 = `${fifthDigit} ${fourthDigit} ${thirdDigit} ${secondDigit} ${firstDigit}`;
 
-let result2 = `${fifthDigit} ${fourthDigit} ${thirdDigit} ${secondDigit} ${firstDigit}`;
-
-alert(result2);
+    alert(result2);
+}
