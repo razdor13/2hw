@@ -64,19 +64,17 @@ const value2 = prompt("Введіть друге значення:");
 alert(value1 === value2);
 
 4;
-const input = prompt("Введіть п'ятизначне число")?.replace(/-/g, "");
+const input = Number(prompt("Введіть п'ятизначне число"));
 
-if (/^-?\d{5}$/.test(input)) {
-    const num = parseInt(input, 10);
+if (Number.isInteger(input) && Math.abs(input).toString().length === 5) {
+    const num = Math.abs(input);
 
-    if ((num < 0 && input.length === 6) || (num >= 0 && input.length === 5)) {
-        const fifthDigit = Math.floor(num / 10000); // Витягуємо першу цифру
-        const fourthDigit = Math.floor((num % 10000) / 1000); // Витягуємо другу цифру
-        const thirdDigit = Math.floor((num % 1000) / 100); // Витягуємо третю цифру
-        const secondDigit = Math.floor((num % 100) / 10); // Витягуємо четверту цифру
-        const firstDigit = Math.floor(num % 10); // Витягуємо п'яту цифру
+    const fifthDigit = Math.floor(num / 10000); // Витягуємо першу цифру
+    const fourthDigit = Math.floor((num % 10000) / 1000); // Витягуємо другу цифру
+    const thirdDigit = Math.floor((num % 1000) / 100); // Витягуємо третю цифру
+    const secondDigit = Math.floor((num % 100) / 10); // Витягуємо четверту цифру
+    const firstDigit = Math.floor(num % 10); // Витягуємо п'яту цифру
 
-        const result = `${fifthDigit} ${fourthDigit} ${thirdDigit} ${secondDigit} ${firstDigit}`;
-        alert(result);
-    }
+    const result = `${fifthDigit} ${fourthDigit} ${thirdDigit} ${secondDigit} ${firstDigit}`;
+    alert(result);
 }
