@@ -63,7 +63,7 @@ const value2 = prompt("Введіть друге значення:");
 
 alert(value1 === value2);
 
-4;
+//4
 const input = Number(prompt("Введіть п'ятизначне число"));
 
 if (Number.isInteger(input) && Math.abs(input).toString().length === 5) {
